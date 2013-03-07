@@ -1,0 +1,15 @@
+display list of News
+	open database
+		- error check for database connection
+	make selection query for all records in news
+		-pre: 	database and tables must exsist [NEWS_ID]
+	display each row to console
+		-post: 	data will be displayed to console
+
+create new News 
+	open database
+		- error check for database connection
+	make insert statement to insert to input new News typed in text box [NEWS_Date, NEWS_Conent, NEWS_Type]
+		-pre: 	database and tables must exsist
+	conform successful/ unseccessful upload to user
+		-post: save new News to database or inform user with error message

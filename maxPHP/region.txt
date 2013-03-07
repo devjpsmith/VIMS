@@ -1,0 +1,19 @@
+display list of regions
+	open database
+		- error check for database connection
+	make selection query for all entrys in region
+		-pre: 	database and tables must exsist [REG_ID, region]
+	display each row to console
+		-post: 	data will be displayed to console
+
+make list selectable for editing
+	include jquery selectable ui
+
+create new region button
+	open database
+		- error check for database connection
+	make insert statement to insert new region typed in text box [REG_ID, region]
+		-pre: 	database and tables must exsist
+	conform successful/ unseccessful upload to user
+		-post: display regions or inform user with error message
+		

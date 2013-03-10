@@ -5,7 +5,7 @@
 -- 	do not use (select) a database (do not 'USE VIMS' this script does that)
 -- 	use the SOURCE command specifying the path name using forward slashes
 --		eg. mysql> SOURCE C:/Users/James/Documents/test.sql;
---  C:/Users/James/Desktop/test.sql;
+--  C:/Users/James/Documents/GitHub/VIMS/test.sql;
 -- ----------------------------------------------------------------------------
 
 
@@ -25,9 +25,7 @@ GRANT SELECT, INSERT, UPDATE ON vims.* TO 'vimsfrontend'@'%';
 USE vims;
 
 -- Clear database
-DELETE FROM news_region_assc;
-DELETE FROM news;
-DELETE FROM incident_entry;
+
 DELETE FROM var;
 DELETE FROM venue_user_assc;
 DELETE FROM venue;
@@ -160,6 +158,9 @@ INSERT INTO venue_user_assc (Venue_VEN_ID, User_USE_ID, Auth_Level_Lookup_AUT_Le
  
 INSERT INTO venue_user_assc (Venue_VEN_ID, User_USE_ID, Auth_Level_Lookup_AUT_Level)
 					 VALUES (101,		   1002,		1);
+					 
+INSERT INTO venue_user_assc (Venue_VEN_ID, User_USE_ID, Auth_Level_Lookup_AUT_Level, VUA_Sys_Status)
+					 VALUES (102,		   1002,		1, 0);
  
 INSERT INTO venue_user_assc (Venue_VEN_ID, User_USE_ID, Auth_Level_Lookup_AUT_Level)
 					 VALUES (101,		   1003,		3);
@@ -230,51 +231,3 @@ INSERT INTO var (VAR_Date, VAR_Attend, VAR_Sec_Chklst, VAR_Supervisor, VAR_Event
 INSERT INTO var (VAR_Date, VAR_Attend, VAR_Sec_Chklst, VAR_Supervisor, VAR_Event, Venue_VEN_ID, User_USE_ID)
 		 VALUES ('2013-02-01 00:00:00', 140, 1, 'Maxwell Clyke', 'Reg. Op.', 101, 1003);
 		 
- INSERT INTO var (VAR_Date, VAR_Attend, VAR_Sec_Chklst, VAR_Supervisor, VAR_Event, Venue_VEN_ID, User_USE_ID)
-		 VALUES ('2013-02-27 00:00:00', 140, 1, 'Maxwell Clyke', 'Reg. Op.', 101, 1003);
-		 
--- ----------------------------------------------------------------------------
--- Test data for vims.incident_entry
--- ----------------------------------------------------------------------------
-
-ALTER TABLE incident_entry AUTO_INCREMENT=1;
-
-INSERT INTO incident_entry (Var_VAR_ID, INE_Time, INE_Police, INE_Content, INE_Damages, Incident_Level_Lookup_ILL_Level)
-					VALUES (1,'17:32:00',0,'Some guy walked into the bar and said ouch', 'Minor damage to bar', 1);
-
-INSERT INTO incident_entry (Var_VAR_ID, INE_Time, INE_Police, INE_Content, INE_Damages, Incident_Level_Lookup_ILL_Level)
-					VALUES (2,'17:32:00',0,'Duck walked into the bar and asked about grapes. Was asked to leave.'
-					, '', 1);
-					
-INSERT INTO incident_entry (Var_VAR_ID, INE_Time, INE_Police, INE_Content, INE_Damages, Incident_Level_Lookup_ILL_Level)
-					VALUES (2,'17:48:00',1,'Duck walked into the bar and asked about grapes again. Bartender nailed his stupid duck beak to the bar'
-					, 'Minor damage to bar', 1);
-
--- ----------------------------------------------------------------------------
--- Test data for vims.NEWS
--- ----------------------------------------------------------------------------
-
-ALTER TABLE news AUTO_INCREMENT=1;
-
-INSERT INTO news (NEW_Date, NEW_Content, NEW_Type, User_USE_ID)
-					VALUES ('2013-03-03 00:00:00', 'Industry Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer et accumsan elit. Nunc dolor eros, interdum at tristique ut, imperdiet nec dui. Suspendisse potenti. Vivamus elementum lobortis mi, eu egestas velit dapibus eu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer et accumsan elit. Nunc dolor eros, interdum at tristique ut, imperdiet nec dui. Suspendisse potenti. Vivamus elementum lobortis mi, eu egestas velit dapibus eu. ', 1, 1001);
-					
-INSERT INTO news (NEW_Date, NEW_Content, NEW_Type, User_USE_ID)
-					VALUES ('2013-03-03 00:00:00', 'Clubwatch Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer et accumsan elit. Nunc dolor eros, interdum at tristique ut, imperdiet nec dui. Suspendisse potenti. Vivamus elementum lobortis mi, eu egestas velit dapibus eu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer et accumsan elit. Nunc dolor eros, interdum at tristique ut, imperdiet nec dui. Suspendisse potenti. Vivamus elementum lobortis mi, eu egestas velit dapibus eu. ', 2, 1001);
-					
-INSERT INTO news (NEW_Date, NEW_Content, NEW_Type, User_USE_ID)
-					VALUES ('2013-03-04 00:00:00', 'Industry Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer et accumsan elit. Nunc dolor eros, interdum at tristique ut, imperdiet nec dui. Suspendisse potenti. Vivamus elementum lobortis mi, eu egestas velit dapibus eu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer et accumsan elit. Nunc dolor eros, interdum at tristique ut, imperdiet nec dui. Suspendisse potenti. Vivamus elementum lobortis mi, eu egestas velit dapibus eu. ', 1, 1001);
-					
--- ----------------------------------------------------------------------------
--- Test data for vims.news_region_assc
--- ----------------------------------------------------------------------------
-
-INSERT INTO news_region_assc (News_NEW_ID, Region_REG_ID)
-					   VALUES(1, 101);
-					   
-INSERT INTO news_region_assc (News_NEW_ID, Region_REG_ID)
-					   VALUES(2, 101);
-					   
-INSERT INTO news_region_assc (News_NEW_ID, Region_REG_ID)
-					   VALUES(3, 101);
-					   

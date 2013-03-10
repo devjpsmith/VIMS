@@ -137,7 +137,6 @@ CREATE  TABLE IF NOT EXISTS `vims`.`Venue_User_Assc` (
   `VUA_Last_Logon` DATETIME NULL ,
   `VUA_Status_Chg` DATETIME NULL ,
   `VUA_Status_Mod` INT UNSIGNED NULL ,
-  `AUT_Level` INT UNSIGNED NULL ,
   `Auth_Level_Lookup_AUT_Level` SMALLINT UNSIGNED NOT NULL ,
   PRIMARY KEY (`Venue_VEN_ID`, `User_USE_ID`) ,
   INDEX `fk_Venue_User_Assc_Venue1_idx` (`Venue_VEN_ID` ASC) ,
@@ -170,7 +169,9 @@ CREATE  TABLE IF NOT EXISTS `vims`.`Var` (
   `VAR_ID` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `VAR_Date` DATETIME NOT NULL ,
   `VAR_Attend` INT UNSIGNED NOT NULL ,
-  `VAR_Sec-Chklst` TINYINT UNSIGNED NOT NULL DEFAULT 1 ,
+  `VAR_Sec_Chklst` TINYINT UNSIGNED NOT NULL DEFAULT 1 ,
+  `VAR_Supervisor` VARCHAR(45) NOT NULL ,
+  `VAR_Event` VARCHAR(45) NOT NULL ,
   `VAR_Reason_for_Del` TEXT NULL ,
   `Venue_VEN_ID` INT UNSIGNED NOT NULL ,
   `User_USE_ID` INT UNSIGNED NOT NULL ,
@@ -199,7 +200,7 @@ CREATE  TABLE IF NOT EXISTS `vims`.`Modification_Var` (
   `MOD_Timestamp` TIMESTAMP NOT NULL ,
   `Var_VAR_ID` INT UNSIGNED NOT NULL ,
   `User_USE_ID` INT UNSIGNED NOT NULL ,
-  `MOD_Action` VARCHAR(45) NULL ,
+  `MOD_Action` VARCHAR(100) NULL ,
   PRIMARY KEY (`MOD_Timestamp`, `Var_VAR_ID`, `User_USE_ID`) ,
   INDEX `fk_Modification_Var_Var1_idx` (`Var_VAR_ID` ASC) ,
   INDEX `fk_Modification_Var_User1_idx` (`User_USE_ID` ASC) ,
@@ -236,9 +237,10 @@ DROP TABLE IF EXISTS `vims`.`Incident_Entry` ;
 CREATE  TABLE IF NOT EXISTS `vims`.`Incident_Entry` (
   `INE_ID` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `Var_VAR_ID` INT UNSIGNED NOT NULL ,
-  `INE_Time` DATETIME NOT NULL ,
+  `INE_Time` TIME NOT NULL ,
   `INE_Police` TINYINT UNSIGNED NOT NULL DEFAULT 0 ,
   `INE_Content` MEDIUMTEXT NOT NULL ,
+  `INE_Damages` MEDIUMTEXT NULL ,
   `INE_Reason_for_Del` TEXT NULL ,
   `Incident_Level_Lookup_ILL_Level` SMALLINT NOT NULL ,
   PRIMARY KEY (`INE_ID`, `Var_VAR_ID`) ,
@@ -267,7 +269,7 @@ CREATE  TABLE IF NOT EXISTS `vims`.`Modification_Ine` (
   `Incident_Entry_INE_ID` INT UNSIGNED NOT NULL ,
   `Incident_Entry_Var_VAR_ID` INT UNSIGNED NOT NULL ,
   `User_USE_ID` INT UNSIGNED NOT NULL ,
-  `MOD_Action` VARCHAR(45) NOT NULL ,
+  `MOD_Action` VARCHAR(100) NOT NULL ,
   PRIMARY KEY (`MOD_Timestamp`, `Incident_Entry_INE_ID`, `Incident_Entry_Var_VAR_ID`, `User_USE_ID`) ,
   INDEX `fk_Modification_Ine_Incident_Entry1_idx` (`Incident_Entry_INE_ID` ASC, `Incident_Entry_Var_VAR_ID` ASC) ,
   INDEX `fk_Modification_Ine_User1_idx` (`User_USE_ID` ASC) ,
@@ -291,32 +293,16 @@ DROP TABLE IF EXISTS `vims`.`Images` ;
 
 CREATE  TABLE IF NOT EXISTS `vims`.`Images` (
   `IMG_ID` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `Incident_Entry_INE_ID` INT UNSIGNED NOT NULL ,
+  `Incident_Entry_Var_VAR_ID` INT UNSIGNED NOT NULL ,
   `IMG_Filename` VARCHAR(45) NOT NULL ,
   `IMG_Desc` TEXT NULL ,
   `IMG_Archived` DATETIME NULL ,
-  PRIMARY KEY (`IMG_ID`) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `vims`.`Ine_Images_Assc`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `vims`.`Ine_Images_Assc` ;
-
-CREATE  TABLE IF NOT EXISTS `vims`.`Ine_Images_Assc` (
-  `Incident_Entry_INE_ID` INT UNSIGNED NOT NULL ,
-  `Incident_Entry_Var_VAR_ID` INT UNSIGNED NOT NULL ,
-  `Images_IMG_ID` INT UNSIGNED NOT NULL ,
-  PRIMARY KEY (`Incident_Entry_INE_ID`, `Incident_Entry_Var_VAR_ID`, `Images_IMG_ID`) ,
-  INDEX `fk_Ine_Images_Assc_Images1_idx` (`Images_IMG_ID` ASC) ,
-  CONSTRAINT `fk_Ine_Images_Assc_Incident_Entry1`
+  PRIMARY KEY (`IMG_ID`, `Incident_Entry_INE_ID`, `Incident_Entry_Var_VAR_ID`) ,
+  INDEX `fk_Images_Incident_Entry1_idx` (`Incident_Entry_INE_ID` ASC, `Incident_Entry_Var_VAR_ID` ASC) ,
+  CONSTRAINT `fk_Images_Incident_Entry1`
     FOREIGN KEY (`Incident_Entry_INE_ID` , `Incident_Entry_Var_VAR_ID` )
     REFERENCES `vims`.`Incident_Entry` (`INE_ID` , `Var_VAR_ID` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Ine_Images_Assc_Images1`
-    FOREIGN KEY (`Images_IMG_ID` )
-    REFERENCES `vims`.`Images` (`IMG_ID` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -365,17 +351,25 @@ DROP TABLE IF EXISTS `vims`.`Person_of_Record` ;
 
 CREATE  TABLE IF NOT EXISTS `vims`.`Person_of_Record` (
   `POR_ID` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `Incident_Entry_INE_ID` INT UNSIGNED NOT NULL ,
+  `Incident_Entry_Var_VAR_ID` INT UNSIGNED NOT NULL ,
   `POR_Name` VARCHAR(45) NULL ,
   `POR_Phone` CHAR(10) NULL ,
   `POR_Licence` CHAR(10) NULL ,
   `POR_Notes` MEDIUMTEXT NOT NULL ,
   `POR_Reason_for_Del` TEXT NULL ,
   `Involvement_Lookup_INV_Level` SMALLINT UNSIGNED NOT NULL ,
-  PRIMARY KEY (`POR_ID`) ,
+  PRIMARY KEY (`POR_ID`, `Incident_Entry_INE_ID`, `Incident_Entry_Var_VAR_ID`) ,
   INDEX `fk_Person_of_Record_Involvement_Lookup1_idx` (`Involvement_Lookup_INV_Level` ASC) ,
+  INDEX `fk_Person_of_Record_Incident_Entry1_idx` (`Incident_Entry_INE_ID` ASC, `Incident_Entry_Var_VAR_ID` ASC) ,
   CONSTRAINT `fk_Person_of_Record_Involvement_Lookup1`
     FOREIGN KEY (`Involvement_Lookup_INV_Level` )
     REFERENCES `vims`.`Involvement_Lookup` (`INV_Level` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Person_of_Record_Incident_Entry1`
+    FOREIGN KEY (`Incident_Entry_INE_ID` , `Incident_Entry_Var_VAR_ID` )
+    REFERENCES `vims`.`Incident_Entry` (`INE_ID` , `Var_VAR_ID` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -390,7 +384,7 @@ CREATE  TABLE IF NOT EXISTS `vims`.`Modification_Por` (
   `MOD_Timestamp` TIMESTAMP NOT NULL ,
   `User_USE_ID` INT UNSIGNED NOT NULL ,
   `Person_of_Record_POR_ID` INT UNSIGNED NOT NULL ,
-  `MOD_Action` VARCHAR(45) NOT NULL ,
+  `MOD_Action` VARCHAR(100) NOT NULL ,
   PRIMARY KEY (`MOD_Timestamp`, `User_USE_ID`, `Person_of_Record_POR_ID`) ,
   INDEX `fk_Modification_Por_User1_idx` (`User_USE_ID` ASC) ,
   INDEX `fk_Modification_Por_Person_of_Record1_idx` (`Person_of_Record_POR_ID` ASC) ,
@@ -400,30 +394,6 @@ CREATE  TABLE IF NOT EXISTS `vims`.`Modification_Por` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Modification_Por_Person_of_Record1`
-    FOREIGN KEY (`Person_of_Record_POR_ID` )
-    REFERENCES `vims`.`Person_of_Record` (`POR_ID` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `vims`.`Incident_Por_Assc`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `vims`.`Incident_Por_Assc` ;
-
-CREATE  TABLE IF NOT EXISTS `vims`.`Incident_Por_Assc` (
-  `Incident_Entry_INE_ID` INT UNSIGNED NOT NULL ,
-  `Incident_Entry_Var_VAR_ID` INT UNSIGNED NOT NULL ,
-  `Person_of_Record_POR_ID` INT UNSIGNED NOT NULL ,
-  PRIMARY KEY (`Incident_Entry_INE_ID`, `Incident_Entry_Var_VAR_ID`, `Person_of_Record_POR_ID`) ,
-  INDEX `fk_Incident_Por_Assc_Person_of_Record1_idx` (`Person_of_Record_POR_ID` ASC) ,
-  CONSTRAINT `fk_Incident_Por_Assc_Incident_Entry1`
-    FOREIGN KEY (`Incident_Entry_INE_ID` , `Incident_Entry_Var_VAR_ID` )
-    REFERENCES `vims`.`Incident_Entry` (`INE_ID` , `Var_VAR_ID` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Incident_Por_Assc_Person_of_Record1`
     FOREIGN KEY (`Person_of_Record_POR_ID` )
     REFERENCES `vims`.`Person_of_Record` (`POR_ID` )
     ON DELETE NO ACTION

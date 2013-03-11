@@ -39,12 +39,21 @@ h1 h2 h3 h4{
 
 .headingDiv{
 	margin-left: 35%;
-	margin-bottom: 50px;
+	margin-bottom: 10px;
 	text-align:center;
 	width: 25%;
 	border-bottom:groove;
 	border-color: yellow;
 	border-width: 3px;
+}
+
+.center{
+	text-align: center;
+}
+
+.tableCenter{
+	margin-left: 35%;
+	margin-right: auto;
 }
 
 #error{
@@ -131,7 +140,7 @@ h1 h2 h3 h4{
 	clear: both;
 	float: left;
 	margin-bottom: 25px;
-	margin-left: -110px; 
+	margin-left: auto;
 	margin-right: auto; 
 	width: 98.25%; 
 	height: 62%; 
@@ -142,19 +151,20 @@ h1 h2 h3 h4{
 }
 
 #leftContent{
-	margin-right: 75px;
 	display: inline-block;
+	position: inherit;
 	float: left;
 	padding: 5px;
-	width: 45%;
+	width: 50%;
+	color: #FFF;
 
 }
 
 #rightContent{
-	margin-bottom: 75px;
 	display: inline-block;
+	position: inherit;
 	float: left;
-	width: 45%;
+	width: 30%;
 }
 
 #rightContent img{
@@ -162,6 +172,7 @@ h1 h2 h3 h4{
 	width: 550px;
 	height: 450px;
 }
+
 /*==============Content End===============*/
 
 /*==============Footer Start=============*/
@@ -340,12 +351,56 @@ h1 h2 h3 h4{
 	color: #FFF;
 }
 
-#accountManage label{
+
+#accountManage .button{
+	margin-left: 15%;
+	font-size: 16px;
+	font-family: Arial, Helvetica, sans-serif;
+	width: 150px;
+	height: 35px;
+}
+
+#manageNews{
+	
+}
+
+/*:: Form Decoration */
+form{
+	/*margin: 5px 5px 5px 5px;*/
+	margin-bottom: 25px;
+	margin-left: 25%;
+	position:inherit;
+	float: left;
+	display: inline;
+	padding: 2px;
+	width: 100%;
+	font-size:20px;
+	color: #FFF;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+form input text{
+	margin-top: 25px;
+	width: 25%;
+	height: 22px;
+}
+
+textarea{
+	width: 50%;
+	height: 150px;
+	font-size: 14px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+
+label{
 	clear:both;
 	float: left;
 	padding: 2px;
-	width: 200px;
+	width: 35%;
 	font-size:20px;
+	color: #FFF;
 	font-weight: bold;
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -365,11 +420,34 @@ h1 h2 h3 h4{
 	
 }
 
-#accountManage .button{
-	margin-left: 15%;
-	font-size: 16px;
-	font-family: Arial, Helvetica, sans-serif;
-	width: 150px;
-	height: 35px;
+/*:: Table Starts */
+table{
+	margin-left: 25%;
+	float:none;
+	display:table;
+	width: 750px;
+	padding: 25px;
+	color: #FFF;
+	text-align: center;	
+}
+
+td{
+	width: 50px;
+	border: solid;
+	border-color: #FF0;
+	border-width: 1px;
+	border-spacing: 5px;
+	padding: 5px;
+	font-family: Arial, Helvetica, sans-serif;		
+}
+th{
+	margin-right: 5px;
+	margin-left: 5px;
+	font-family: Arial, Helvetica, sans-serif;	
+}
+
+.hiddenEffects{
+	border: none;
+	
 }
 

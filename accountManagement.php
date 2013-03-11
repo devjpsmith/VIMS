@@ -11,12 +11,11 @@
     
     $con = new Connection();
     $con = $con->connect();
-        if (mysqli_errno($con)){
-            echo "Connection to Database Failed.";
+        if (mysqlif (mysqli_errno($con)){
         
-        }
-    
-    //:: Program Variable Declarations
+		echo "Connection to Database Failed.";
+        
+/:: Program Variable Declarations
     $userName  		    = $_SESSION['userName'];
     $userFname  		= $_SESSION['userFname'];
     $userLname  		= $_SESSION['userLname'];

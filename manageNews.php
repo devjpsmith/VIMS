@@ -14,7 +14,9 @@
 	//$venueID  		    = $_SESSION['venueId'];
 	//$venueName  		= $_SESSION['venueName'];
 	
-	//:: Misc. c. Variables
+	//:: Misc. c. Variabl$title = NULL;
+	$date  = NULL;
+	$comments = NULLVariables
 	$error = " ";
 	$css = "";
 	$js = "";
@@ -23,32 +25,65 @@
 	createHeader($userName);
 	
 	echo '<div id="cont
-	//:: Draws Content Blocks
+	//:: Draif(isset($_POST['submit'])){
+		$title = $_POST['title'];
+		$date  = $_POST['newsDate'];
+		$comments = $_POST['comments'];
+			
+		var_dump($title);
+			
+
+		if(strlen($title) <= 0 || strlen($date) <= 0 || strlen($comments) <=0 ){
+			$error = "Error: All Fields are Mandatory.";
+		}
+		else{
+			setNews($con, $title, $date, $comments, 1004);
+			$error = "Update worked!";
+		}
+			
+			
+		
+			
+			
+			
+	}
+:: Draws Content Blocks
 	echo '<div id="content">';
 	echo '<div class="headingDiv"><h2>Manage News</h2></div>';
 		 
-	echo '<div id="leftContent">';
-	
+	echo '<div id="leftContent">';singleContent">';
+	echo '<div id="error">'.$error.'</div>';
 	$p = $_GET['action'];
 
 	switch($p){
 		case "create":
+				
 			echo '<div id="subhead">';
-			echo "<h3 class='center'><span class='yellow'>Create News Flash</span></h3>";
+			echo "<h3Create News Flash</span></h3>";
 			echo '</div>';
 			echo newNewsForm($con);
 
 		break;
 		
+		case "mo		
+		
+		break;
+		
 		case "modify":
-			echo '<div id="subhead">';
+			if($_GET['id'] == NULL){
+				header('Location: manageNews.php?action=default');
+			}';
 			echo "<h3 class='center'><span class='yellow'>Modify News Flash</span></h3>";
 			echo '</div>';
 			echo modifyNewsForm($con);
 		break;
 		
 		default:
-			echo '<div class="center"><a href="manageNews.php?action=create" >'.IMG("new.gif", "Create a new News Article.").'</a></div>';
+			echo '<di	
+		break;
+		
+		default:
+			echo '<div class="newNewsButtonate" >'.IMG("new.gif", "Create a new News Article.").'</a></div>';
 				drawNewsTable($con);
 		break;
 		
@@ -60,10 +95,9 @@
 	echo '</div>';
 	
 	echo '<div id="rightContent">';
+	//echo IMG("sp//echo '<div id="rightContent">';
 	//echo IMG("spotlights.jpg", "Spotlights");
-	echo '</div>';
-	
-	echo "</div>"; //End of Content	
+	//	
 	
 	
 
@@ -75,10 +109,50 @@
 	
 //:: Start of Functions	
 	function newNewsForm($con){
-        $form  = '<div id="manageNews" >';
+        $form  = '<div id="manageN
+	/**
+	 * Take all data received through the form via POSTBACK and attempts to insert it into the database in a readable
+	 * manorthe Region select form element.
+	*/
+	function getRegionName($con){
+		static $data;
+		 
+		$sqlparam String $title The Title of the news article
+	 * @param String $date A date/time string
+	 * @param String $comments The main content of the news flash
+	 * @param Int    $uid The id of the currently logged in user.
+	 *
+	 * @return none
+	*/
+	function setNews($con, $title, $date, $comments, $uid){
+		global $error;
+		$sql  = 'INSERT INTO news ';
+		$sql .= '(NEW_Title, NEW_Date, NEW_Content, User_USE_ID)';
+		$sql .= ' VALUES(';
+		$sql .= " '".$title."', ";
+		$sql .= " '".$date."', ";
+		$sql .= " '".$comments."', ";
+		$sql .= " '".$uid."' ";
+		$sql .= ')';
+		
+		
+		if(!mysqli_query($con, $sql)){
+			die('Error: '.mysqli_error($con));
+		}
+		else{
+			echo "Record should be in DB ";	
+		}
+		
+		
+	}
+	
+	function modifyNews($con, $nid){
+		
+	}
+ageNews" >';
         $form .= '<form method="POST" action="manageNews.php">'."\n";
 		$form .= '<label>Title:</label>';
-		$form .= '<input type="text" value="" name="title" />'."\n";
+		$form .= '<input?action=create type="text" value="" name="title" />'."\n";
 		$form .= '<br /><br />';
 		$form .= '<label>Date:</label>';
 		$form .= '<input type="date" value="'.currTimeDate().'" name="newsDate" />';
@@ -90,10 +164,10 @@
 		$form .= '<textarea class="textarea">';
 		$form .= '</textarea>';
 		$form .= '<br /><br />';
-		$form .= '<input type="submit" class="button" value="Submit" />';
+		$form .= '<input name="commentst type="submit" class="button" value="Submit" />';
 		
 		$form .= '</form>';
-		$form .= '</div>';
+		$form .= '</div>nam .= '</div>';
 		
 		return $form;
 	}
@@ -108,7 +182,7 @@
 		$form  = '<div id="manageNews" >';
         $form .= '<form method="POST" action="manageNews.php">'."\n";
 		$form .= '<label>Title:</label>';
-		$form .= '<input type="text" value="'.$defaults[1].'" name="title" />'."\n";
+		$form .= '<input type="text" value="'.$default?action=modifys[1].'" name="title" />'."\n";
 		$form .= '<br /><br />';
 		
 		$form .= '<label>Date:</label>';

@@ -95,22 +95,20 @@ h1 h2 h3 h4{
 	width: 24%;
 	background-color: #000;
 	height: 100px;
+	border: soli
+#top;
+	height: 100px;	
 	border: solid;
 	border-color: #FF0; 
 	border-width:1px;
 }
 
-#topRight p{
-	margin-left: 25px;
+#bottomMiddle h1{
+	margin-left: 15%;
+	color: #FFF;	
 }
 
-#topLeft img{
-	margin-left: 12%;
-	width: 100px;
-	height: 75px;
-}
-
-#topLeft p{
+#bottomMidd#topLeft p{
 	margin-top: -5px;
 	margin-left: 25px;
 	color: #FFF;
@@ -170,12 +168,18 @@ h1 h2 h3 h4{
 #rightContent img{
 	display: inline-block;
 	width: 550px;
-	height: 450px;
+	height:	border:solid;
+	border-width: 1px;
+	border-color: #ff0ht: 450px;
 }
 
 /*==============Content End===============*/
 
 /*==============Footer Start=============*/
+#fosingleContent{
+	float: left;
+	display: inline-block;
+	width: 10=====*/
 #footer_container{
 	margin-left: auto;
 	margin-right: 10%;
@@ -389,13 +393,10 @@ form input text{
 textarea{
 	width: 50%;
 	height: 150px;
-	font-size: 14px;
-	font-family: Arial, Helvetica, sans-serif;
-}
-
-
-label{
-	clear:both;
+	font-#singleContent form{
+	/*margin: 5px 5px 5px 5px;*/
+	margin-bottom: 25px;
+	margin-left: 1th;
 	float: left;
 	padding: 2px;
 	width: 35%;
@@ -408,14 +409,12 @@ label{
 .readOnly{
 	float: left;
 	font-size: 20px;
-	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
-	color: #FF0;
-	
+	font-f#singleContent form input{
+	width: 12%;
 }
 
-
-.passField{
-	padding: 2px;
+#singleContent textarea{
+	width: 252px;
 	min-width: 25px;
 	
 }
@@ -424,19 +423,23 @@ label{
 table{
 	margin-left: 25%;
 	float:none;
-	display:table;
-	width: 750px;
-	padding: 25px;
-	color: #FFF;
-	text-align: center;	
+	d#singleContent select{
+	width: 13%;
 }
 
-td{
-	width: 50px;
-	border: solid;
-	border-color: #FF0;
-	border-width: 1px;
-	border-spacing: 5px;
+
+label{
+	clear:both;
+	float: left;
+	padding: 2px;
+	width: 15ght: bold;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.readOnly{
+	float: left;
+	font-size: 20px;
+	font-fg: 5px;
 	padding: 5px;
 	font-family: Arial, Helvetica, sans-serif;		
 }
@@ -448,6 +451,40 @@ th{
 
 .hiddenEffects{
 	border: none;
+	
+}
+
+#singleContent table{
+	position: inherit;
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-bottom: 5%;
+	float:none;
+	display:table;
+	width: 90%;
+	padding: 10px;
+	color: #FFF;
+	text-align: center;	
+}
+
+#singleContent .newNewsButton{
+	position: inherit;
+	margin-left: 6%;
+}
+
+#singleContent td{	
+	width: 15%#singleContent #singleContent .hiddenEffects{
+	border: none;
+	text-align:left;
+	width: 1%;
+	
+	
+}
+
+#subhead h3{
+	float: left;
+	margin-left: 10%;
+	margin-bottom: 3%;
 	
 }
 

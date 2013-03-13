@@ -19,10 +19,11 @@
 /*==============Default Styles Start=============*/
 body{
 	background-color: #333;	
+	color: #fff;
 }
 
 p{
-	/*margin-left:	color: #fff;t: 10%;*/
+	/*margin-left: 10%;*/
 	color: #FFF;
 	font-family:Arial, Helvetica, sans-serif;
 		
@@ -90,25 +91,28 @@ h1 h2 h3 h4{
 	
 }
 
+
 #topRight{
 	float: left;
 	width: 24%;
 	background-color: #000;
 	height: 100px;
-	border: soli
-#top;
-	height: 100px;	
 	border: solid;
 	border-color: #FF0; 
 	border-width:1px;
 }
 
-#bottomMiddle h1{
-	margin-left: 15%;
-	color: #FFF;	
+#topRight p{
+	margin-left: 25px;
 }
 
-#bottomMidd#topLeft p{
+#topLeft img{
+	margin-left: 12%;
+	width: 100px;
+	height: 75px;
+}
+
+#topLeft p{
 	margin-top: -5px;
 	margin-left: 25px;
 	color: #FFF;
@@ -155,6 +159,9 @@ h1 h2 h3 h4{
 	padding: 5px;
 	width: 50%;
 	color: #FFF;
+	border:solid;
+	border-width: 1px;
+	border-color: #ff0;
 
 }
 
@@ -165,21 +172,21 @@ h1 h2 h3 h4{
 	width: 30%;
 }
 
+#singleContent{
+	float: left;
+	display: inline-block;
+	width: 100%;
+}
+
 #rightContent img{
 	display: inline-block;
 	width: 550px;
-	height:	border:solid;
-	border-width: 1px;
-	border-color: #ff0ht: 450px;
+	height: 450px;
 }
 
 /*==============Content End===============*/
 
 /*==============Footer Start=============*/
-#fosingleContent{
-	float: left;
-	display: inline-block;
-	width: 10=====*/
 #footer_container{
 	margin-left: auto;
 	margin-right: 10%;
@@ -369,10 +376,10 @@ h1 h2 h3 h4{
 }
 
 /*:: Form Decoration */
-form{
+#singleContent form{
 	/*margin: 5px 5px 5px 5px;*/
 	margin-bottom: 25px;
-	margin-left: 25%;
+	margin-left: 15%;
 	position:inherit;
 	float: left;
 	display: inline;
@@ -384,22 +391,27 @@ form{
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-form input text{
-	margin-top: 25px;
-	width: 25%;
-	height: 22px;
+#singleContent form input{
+	width: 12%;
 }
 
-textarea{
-	width: 50%;
+#singleContent textarea{
+	width: 25%;
 	height: 150px;
-	font-#singleContent form{
-	/*margin: 5px 5px 5px 5px;*/
-	margin-bottom: 25px;
-	margin-left: 1th;
+	font-size: 14px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#singleContent select{
+	width: 13%;
+}
+
+
+label{
+	clear:both;
 	float: left;
 	padding: 2px;
-	width: 35%;
+	width: 15%;
 	font-size:20px;
 	color: #FFF;
 	font-weight: bold;
@@ -409,51 +421,19 @@ textarea{
 .readOnly{
 	float: left;
 	font-size: 20px;
-	font-f#singleContent form input{
-	width: 12%;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	color: #FF0;
+	
 }
 
-#singleContent textarea{
-	width: 252px;
+
+.passField{
+	padding: 2px;
 	min-width: 25px;
 	
 }
 
 /*:: Table Starts */
-table{
-	margin-left: 25%;
-	float:none;
-	d#singleContent select{
-	width: 13%;
-}
-
-
-label{
-	clear:both;
-	float: left;
-	padding: 2px;
-	width: 15ght: bold;
-	font-family: Arial, Helvetica, sans-serif;
-}
-
-.readOnly{
-	float: left;
-	font-size: 20px;
-	font-fg: 5px;
-	padding: 5px;
-	font-family: Arial, Helvetica, sans-serif;		
-}
-th{
-	margin-right: 5px;
-	margin-left: 5px;
-	font-family: Arial, Helvetica, sans-serif;	
-}
-
-.hiddenEffects{
-	border: none;
-	
-}
-
 #singleContent table{
 	position: inherit;
 	margin-left: 5%;
@@ -473,7 +453,21 @@ th{
 }
 
 #singleContent td{	
-	width: 15%#singleContent #singleContent .hiddenEffects{
+	width: 15%;
+	border: solid;
+	border-color: #FF0;
+	border-width: 1px;
+	border-spacing: 5px;
+	padding: 5px;
+	font-family: Arial, Helvetica, sans-serif;		
+}
+#singleContent th{
+	margin-right: 5px;
+	margin-left: 5px;
+	font-family: Arial, Helvetica, sans-serif;	
+}
+
+#singleContent .hiddenEffects{
 	border: none;
 	text-align:left;
 	width: 1%;
